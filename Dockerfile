@@ -63,7 +63,7 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai  /etc/localtime
 RUN pip install --upgrade pip
 RUN pip install wxpython && \
     pip install -U robotframework \
-                   selenium \
+                   selenium==3.0.2 \
                    robotframework-selenium2library \
                    robotframework-ftplibrary \
 		   robotframework-requests \
