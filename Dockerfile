@@ -30,17 +30,6 @@ CMD ["/sbin/my_init"]
 RUN echo 'deb http://archive.ubuntu.com/ubuntu trusty main universe restricted' > /etc/apt/sources.list && \
     echo 'deb http://archive.ubuntu.com/ubuntu trusty-updates main universe restricted' >> /etc/apt/sources.list && \
 
-#安装中文语言包
-RUN sudo apt-get install -y language-pack-gnome-zh-hans
-RUN sudo apt-get install -y ttf-wqy-zenhei
-
-# 处理中文问题
-ENV LANG=zh_CN.UTF-8
-
-# 处理时区问题
-RUN echo "Asia/shanghai" > /etc/timezone
-RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai  /etc/localtime
-
 # Install packages needed for app
 
     export DEBCONF_NONINTERACTIVE_SEEN=true DEBIAN_FRONTEND=noninteractive && \
@@ -56,6 +45,17 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai  /etc/localtime
                        bash \
                        firefox \
                        git
+
+#安装中文语言包
+RUN sudo apt-get install -y language-pack-gnome-zh-hans
+RUN sudo apt-get install -y ttf-wqy-zenhei
+
+# 处理中文问题
+ENV LANG=zh_CN.UTF-8
+
+# 处理时区问题
+RUN echo "Asia/shanghai" > /etc/timezone
+RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai  /etc/localtime
 
 #########################################
 ##          Install app components     ##
